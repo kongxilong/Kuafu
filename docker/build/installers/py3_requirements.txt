@@ -1,0 +1,25 @@
+# system utils
+supervisor
+
+# Google infras
+absl-py
+glog
+grpcio-tools
+protobuf
+python-gflags
+
+# Web
+flask
+flask-cors
+requests
+simplejson
+
+# Python tools
+pyproj
+shapely
+
+# Data format
+h5py
+utm
+
+
