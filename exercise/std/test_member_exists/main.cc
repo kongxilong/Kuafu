@@ -2,12 +2,12 @@
 #include<utility>
 #include<type_traits>
  
-template<typename T>
+template<typename T, typename... Args >
 struct has_member_foo
 {
 private:
     template<typename U>
-        static auto Check(int) -> decltype( std::declval<U>().foo(), std::true_type() );
+        static auto Check(int) -> decltype( std::declval<U>().foo(std::declval<Args>()...), std::true_type() );
     template<typename U>
         static std::false_type Check(...);
 public:
@@ -17,6 +17,10 @@ public:
 struct myStruct
 {
     void foo() { std::cout << "hello" << std::endl;  }
+};
+struct myStruct2
+{
+    int foo(int,void*) { std::cout << "hello" << std::endl; return 1; }
 };
  
 struct another
@@ -30,6 +34,11 @@ int main()
         std::cout << "myStruct has foo funciton"  << std::endl;
     else
         std::cout << "myStruct does't have foo funciton"  << std::endl;
+
+    if( has_member_foo<myStruct2,int, void*>::value )
+        std::cout << "myStruct2 has foo funciton"  << std::endl;
+    else
+        std::cout << "myStruct2 does't have foo funciton"  << std::endl;
  
     if( has_member_foo<another>::value )
         std::cout << "another has foo function"  << std::endl;
