@@ -24,6 +24,6 @@ xhost +local:root 1>/dev/null 2>&1
 docker exec \
     -u $DOCKER_USER \
     -it kuafu_dev_$USER \
-    /usr/bin/zsh
+    /bin/bash
 
 xhost -local:root 1>/dev/null 2>&1

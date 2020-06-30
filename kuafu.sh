@@ -4,7 +4,7 @@ DIR=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 echo "DIR = ${DIR}"
 
 function build(){
-  bazel query //... | xargs bazel build --compilation_mode=dbg --cxxopt=-g  --cxxopt=-O1 
+  bazel query //... | xargs bazel build --compilation_mode=dbg --cxxopt=-g  --cxxopt=-O1 --cxxopt='-std=c++11' 
 }
 
 function bazel_test(){
